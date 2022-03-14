@@ -4,7 +4,7 @@ import { Table } from "react-bootstrap";
 function StudentsList({ user }) {
   return (
     <div>
-      <Table striped bordered hover size="sm">
+      <Table striped bordered hover responsive  size="sm">
         <thead>
           <tr>
             <th>Имя</th>
