@@ -8,7 +8,7 @@ function Footer() {
       <footer>
         <Container>
           <Row>
-            <Col className='text-center py-3'>Copyright {format(new Date(), "yyyy")} &copy; Merc</Col>
+            <Col className='text-center py-3'>Copyright 2021-{format(new Date(), "yyyy")} &copy; УрФУ</Col>
           </Row>
         </Container>
       </footer>
