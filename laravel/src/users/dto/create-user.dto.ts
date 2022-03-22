@@ -4,7 +4,8 @@ export class CreateUserDto {
     readonly name
     readonly second_name
     readonly patronomyc
-    readonly flura
+    readonly flura:string
     readonly grant
     readonly type
+    readonly role
 }

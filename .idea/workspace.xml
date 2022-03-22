@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d5ccdea-0dde-4dcd-84ba-98ceb036b62c" name="Default Changelist" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/laravel/src/bios/bios.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/src/users/dto/create-user.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/src/users/roles.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/src/users/types.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/laravel/src/users/user-has-roles.model.ts" afterDir="false" />
+    <list default="true" id="7d5ccdea-0dde-4dcd-84ba-98ceb036b62c" name="Default Changelist" comment="Start of working">
+      <change afterPath="$PROJECT_DIR$/laravel/src/bios/dto/create-bio.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/src/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/users.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/src/users/users.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/users.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/src/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/users.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/src/bios/bios.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/bios/bios.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/src/users/dto/create-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/dto/create-user.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/users.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +106,8 @@
       <workItem from="1647944918419" duration="135000" />
       <workItem from="1647945159947" duration="3192000" />
       <workItem from="1647948411139" duration="49000" />
-      <workItem from="1647948470054" duration="2640000" />
+      <workItem from="1647948470054" duration="2745000" />
+      <workItem from="1647962115912" duration="2657000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1647273701670</created>
@@ -142,7 +137,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647945799688</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Start of working">
+      <created>1647951188088</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1647951188088</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Start of working">
+      <created>1647951207821</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1647951207821</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +171,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Start of working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start of working" />
   </component>
 </project>

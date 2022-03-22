@@ -11,7 +11,7 @@ export class BiosModel extends Model {
     second_name: string
     @Column({type: DataType.STRING, allowNull: true})
     patronomyc: string
-    @Column({type: DataType.DATE, allowNull: false})
+    @Column({type: DataType.DATE, allowNull: true})
     flura: Date
     @Column({type: DataType.DECIMAL, allowNull: false})
     grant: number
