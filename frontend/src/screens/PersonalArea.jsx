@@ -1,6 +1,6 @@
 import React from "react";
 import CardNews from "../components/CardNews/CardNews";
-import { Route } from "react-router-dom";
+
 
 function PersonalArea() {
   return (

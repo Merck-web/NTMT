@@ -8,7 +8,12 @@ function CardNews() {
     <>
       <div className='cards'>
         {cards.map((item) => (
-          <Card key={item.name} icon={item.icon} name={item.name} />
+          <Card
+            key={item.name}
+            icon={item.icon}
+            name={item.name}
+            route={item.route}
+          />
         ))}
       </div>
     </>

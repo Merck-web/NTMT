@@ -1,17 +1,18 @@
 import React from "react";
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 function Headers() {
   return (
     <header>
       <div className='header'>
-        <div className='logo'>
+        <Link to='/' className='logo'>
           <img
             className='logo-img'
             src='images/logo.png'
             alt='images/logo.png'
           />
-        </div>
+        </Link>
         <div className='user'>
           <div className='user-profile'>
             <img
