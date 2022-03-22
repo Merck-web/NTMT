@@ -12,6 +12,27 @@ body {
 p {
   margin: 0;
 }
+.content {
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.personal-area {
+  padding: 0 54px;
+}
+.title {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
 /* main {
   min-height: 80vh;
 } */
