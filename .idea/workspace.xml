@@ -2,16 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d5ccdea-0dde-4dcd-84ba-98ceb036b62c" name="Default Changelist" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/laravel/src/users/users.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/src/bios/bios.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/src/users/dto/create-user.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/src/users/roles.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/src/users/types.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/src/users/user-has-roles.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/src/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/users.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/src/users/users.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/users.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/src/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/users.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/users.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -23,7 +36,7 @@
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitToolBoxStore">
-    <option name="projectConfigVersion" value="4" />
+    <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
       <RecentBranches>
         <option name="branchesForRepo">
@@ -55,13 +68,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -94,7 +110,9 @@
       <workItem from="1647273571342" duration="184000" />
       <workItem from="1647944725782" duration="108000" />
       <workItem from="1647944918419" duration="135000" />
-      <workItem from="1647945159947" duration="557000" />
+      <workItem from="1647945159947" duration="3192000" />
+      <workItem from="1647948411139" duration="49000" />
+      <workItem from="1647948470054" duration="2640000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1647273701670</created>
@@ -117,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647945017160</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Initial commit">
+      <created>1647945799688</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1647945799688</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
