@@ -35,15 +35,15 @@ function SheduleTable() {
           <tr className='table-tr'>
             <td className='table-td'>
               <ul>
-                {lessons.map((lesson) => (
-                  <li key={lesson.id}>{lesson}</li>
+                {lessons.map((lesson, index) => (
+                  <li key={index}>{lesson}</li>
                 ))}
               </ul>
             </td>
             <td className='table-td'>
               <ul>
-                {lessons.map((lesson) => (
-                  <li key={lesson.id}> {lesson}</li>
+                {lessons.map((lesson, index) => (
+                  <li key={index}> {lesson}</li>
                 ))}
               </ul>
             </td>
