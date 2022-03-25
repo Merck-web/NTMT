@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d5ccdea-0dde-4dcd-84ba-98ceb036b62c" name="Default Changelist" comment="Посидел, помудрил, что-то получилось">
+    <list default="true" id="8a15b4ae-e6d4-4696-8aad-d802e2b01970" name="Changes" comment="ds">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/src/bios/bios.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/bios/bios.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/src/bios/bios.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/bios/bios.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/src/bios/bios.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/bios/bios.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/src/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/users.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,11 +33,9 @@
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/laravel" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
-    <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
       <RecentBranches>
         <option name="branchesForRepo">
@@ -41,11 +45,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="snowflake" />
-                    <option name="lastUsedInstant" value="1647944931" />
+                    <option name="lastUsedInstant" value="1648202634" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1647944930" />
+                    <option name="lastUsedInstant" value="1648202633" />
                   </RecentBranch>
                 </list>
               </option>
@@ -56,10 +60,13 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/laravel/src/app.module.ts" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="26NoQRkzOz8VOjmo5M3RY26Zslq" />
+  <component name="ProjectId" id="26sBkH45DzkD91cPNdV68QU8syU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -69,19 +76,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="postgresql" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../lisa(native)" />
-    <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
-    <property name="ts.external.directory.path" value="D:\projects\NTMT\laravel\node_modules\typescript\lib" />
-    <property name="typescript.add.unambiguous.imports.on.the.fly" value="true" />
-    <property name="vue.rearranger.settings.migration" value="true" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RunManager">
     <configuration name="start:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -102,82 +99,14 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="7d5ccdea-0dde-4dcd-84ba-98ceb036b62c" name="Default Changelist" comment="" />
-      <created>1647273390698</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1647273390698</updated>
-      <workItem from="1647273393457" duration="136000" />
-      <workItem from="1647273571342" duration="184000" />
-      <workItem from="1647944725782" duration="108000" />
-      <workItem from="1647944918419" duration="135000" />
-      <workItem from="1647945159947" duration="3192000" />
-      <workItem from="1647948411139" duration="49000" />
-      <workItem from="1647948470054" duration="2745000" />
-      <workItem from="1647962115912" duration="2708000" />
-      <workItem from="1648043033233" duration="93000" />
-      <workItem from="1648092692586" duration="144000" />
-      <workItem from="1648121880952" duration="19000" />
-      <workItem from="1648195964590" duration="1825000" />
-    </task>
-    <task id="LOCAL-00001" summary="Initial commit">
-      <created>1647273701670</created>
+    <task id="LOCAL-00001" summary="ds">
+      <created>1648203597600</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1647273701670</updated>
+      <updated>1648203597600</updated>
     </task>
-    <task id="LOCAL-00002" summary="Initial commit">
-      <created>1647273732214</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1647273732214</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Initial commit">
-      <created>1647945017160</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1647945017160</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Initial commit">
-      <created>1647945799688</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1647945799688</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Start of working">
-      <created>1647951188088</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1647951188088</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Start of working">
-      <created>1647951207821</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1647951207821</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Посидел, помудрил, что-то получилось">
-      <created>1647964838727</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1647964838727</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Посидел, помудрил, что-то получилось">
-      <created>1648196046150</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1648196046150</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,13 +124,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit" />
-    <MESSAGE value="Start of working" />
-    <MESSAGE value="Посидел, помудрил, что-то получилось" />
-    <option name="LAST_COMMIT_MESSAGE" value="Посидел, помудрил, что-то получилось" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="ds" />
+    <option name="LAST_COMMIT_MESSAGE" value="ds" />
   </component>
 </project>

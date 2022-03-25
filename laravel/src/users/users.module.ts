@@ -1,5 +1,5 @@
 import {Module} from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
+import {JwtModule} from '@nestjs/jwt';
 import {SequelizeModule} from '@nestjs/sequelize/dist/sequelize.module';
 import {RolesModel} from './roles.model';
 import {TypesModel} from './types.model';
@@ -19,7 +19,8 @@ import {UsersService} from './users.service';
                 expiresIn: '24h'
             }
         }),
-    ]
+    ],
+    exports: [JwtModule]
 })
 export class UsersModule {
 }
