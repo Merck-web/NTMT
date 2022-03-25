@@ -88,8 +88,16 @@ p {
   color: #2779be;
   cursor: pointer;
 }
+ul {
+  list-style: decimal;
+  padding: 0;
+  margin-left: 40px;
+}
 @media (max-width: 440px) {
   .routers {
     padding: 0 10px;
+  }
+  ul {
+    margin-left: 20px;
   }
 }

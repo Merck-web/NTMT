@@ -15,17 +15,17 @@ function App() {
         <Headers />
         <PersonalArea />
         <div className='routers'>
-          <Route path='/yvedomlenia' >
+          <Route path='/yvedomlenia'>
             <NotificationsScreen />
           </Route>
           <Route path='/ras'>
-            <RecordBookScreen />
+            <ScheduleScreen />
           </Route>
           <Route path='/fail'>
             <FileScreen />
           </Route>
           <Route path='/zachetka'>
-            <ScheduleScreen />
+            <RecordBookScreen />
           </Route>
           <Route path='/plan'>
             <PlanScreen />
