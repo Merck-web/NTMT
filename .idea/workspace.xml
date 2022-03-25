@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d5ccdea-0dde-4dcd-84ba-98ceb036b62c" name="Default Changelist" comment="Start of working">
-      <change afterPath="$PROJECT_DIR$/laravel/src/bios/dto/create-bio.dto.ts" afterDir="false" />
+    <list default="true" id="7d5ccdea-0dde-4dcd-84ba-98ceb036b62c" name="Default Changelist" comment="Посидел, помудрил, что-то получилось">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/src/bios/bios.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/bios/bios.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/src/users/dto/create-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/dto/create-user.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/src/users/users.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +27,7 @@
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/laravel" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitToolBoxStore">
@@ -55,8 +56,13 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="26NoQRkzOz8VOjmo5M3RY26Zslq" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -66,13 +72,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../lisa(native)" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+    <property name="ts.external.directory.path" value="D:\projects\NTMT\laravel\node_modules\typescript\lib" />
+    <property name="typescript.add.unambiguous.imports.on.the.fly" value="true" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -107,7 +115,11 @@
       <workItem from="1647945159947" duration="3192000" />
       <workItem from="1647948411139" duration="49000" />
       <workItem from="1647948470054" duration="2745000" />
-      <workItem from="1647962115912" duration="2657000" />
+      <workItem from="1647962115912" duration="2708000" />
+      <workItem from="1648043033233" duration="93000" />
+      <workItem from="1648092692586" duration="144000" />
+      <workItem from="1648121880952" duration="19000" />
+      <workItem from="1648195964590" duration="1825000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1647273701670</created>
@@ -151,7 +163,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647951207821</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Посидел, помудрил, что-то получилось">
+      <created>1647964838727</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1647964838727</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Посидел, помудрил, что-то получилось">
+      <created>1648196046150</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1648196046150</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,11 +193,15 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Start of working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start of working" />
+    <MESSAGE value="Посидел, помудрил, что-то получилось" />
+    <option name="LAST_COMMIT_MESSAGE" value="Посидел, помудрил, что-то получилось" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
