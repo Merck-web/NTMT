@@ -45,7 +45,7 @@ const cards = [
       {
         description: "Весенний семестр 2021/2022",
       },
-    ],
+    ]
   },
   {
     icon: "zachetka.svg",

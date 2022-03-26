@@ -28,7 +28,7 @@ function SheduleTable() {
         <thead>
           <tr className='table-tr'>
             <td className='table-td'>{days[n]}</td>
-            <td className='table-td'>{days[n + 1]}</td>
+            <td className='table-td'>{days[n + 1] ? days[n+1] : days[0]}</td>
           </tr>
         </thead>
         <tbody>
