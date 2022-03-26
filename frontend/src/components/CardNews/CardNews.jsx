@@ -8,9 +8,8 @@ import queryString from "query-string";
 function CardNews() {
   const location = useLocation();
   const query = queryString.parse(location);
-  const [activeCard, setActiveCard] = useState(window.location.pathname.substring(1));
-  console.log(activeCard)
-  console.log(window.location.pathname)
+  const path = window.location.pathname.substring(1)
+  const [activeCard, setActiveCard] = useState(path);
   // console.log(query);
   const menuCards = (e) => {};
   return (
