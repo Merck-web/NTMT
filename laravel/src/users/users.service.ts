@@ -50,13 +50,21 @@ export class UsersService {
 
     async login(dto: LoginDto) {
         try {
-            console.log('зашле')
-            const candidate = await UsersModel.findOne({where: {login: dto.login}})
-            console.log(candidate)
-            const password = await bcrypt.compare(dto.password, candidate.password)
-            if (password && candidate) {
-                const payload = {id: candidate.id}
-                return {token: this.jwtService.sign(payload)}
+            if (dto.type == 1) {
+                const candidate = await UsersModel.findOne({where: {login: dto.login}})
+                const password = await bcrypt.compare(dto.password, candidate.password)
+                if (password && candidate) {
+                    const payload = {id: candidate.id}
+                    return {token: this.jwtService.sign(payload)}
+                }
+            } else {
+                if (dto.active_directory_response == true) {
+                    const user = await UsersModel.findOne({where: {id: dto.id}})
+                    const payload = {id: user.id}
+                    return {token: this.jwtService.sign(payload)}
+                } else {
+                    return {"error":"ошибка авторизации"}
+                }
             }
 
         } catch (e) {
