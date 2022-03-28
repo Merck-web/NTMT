@@ -7,31 +7,46 @@ import NotificationsScreen from "./screens/NotificationsScreen";
 import PlanScreen from "./screens/PlanScreen";
 import RecordBookScreen from "./screens/RecordBookScreen";
 import ScheduleScreen from "./screens/ScheduleScreen";
+import { useState, useEffect } from "react";
+import Login from "./screens/Login";
 
 function App() {
+  const [token, setToken] = useState();
+  useEffect(() => {
+    // setToken(" ");
+    localStorage.setItem("token", "");
+  }, []);
+  const auth = localStorage.getItem("token");
+  console.log(auth);
   return (
     <Router>
-      <main className='container'>
-        <Headers />
-        <PersonalArea />
-        <div className='routers'>
-          <Route path='/yvedomlenia'>
-            <NotificationsScreen />
-          </Route>
-          <Route path='/ras'>
-            <ScheduleScreen />
-          </Route>
-          <Route path='/fail'>
-            <FileScreen />
-          </Route>
-          <Route path='/zachetka'>
-            <RecordBookScreen />
-          </Route>
-          <Route path='/plan'>
-            <PlanScreen />
-          </Route>
-        </div>
-        <Footer />
+      <main className="container">
+        {auth !== "" ? (
+          <>
+            <Headers />
+            <PersonalArea />
+            <div className="routers">
+              <Route path="/yvedomlenia">
+                <NotificationsScreen />
+              </Route>
+              <Route path="/ras">
+                <ScheduleScreen />
+              </Route>
+              <Route path="/fail">
+                <FileScreen />
+              </Route>
+              <Route path="/zachetka">
+                <RecordBookScreen />
+              </Route>
+              <Route path="/plan">
+                <PlanScreen />
+              </Route>
+            </div>
+            <Footer />
+          </>
+        ) : (
+          <Login />
+        )}
       </main>
     </Router>
   );

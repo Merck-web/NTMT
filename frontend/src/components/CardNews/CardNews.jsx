@@ -7,7 +7,6 @@ import queryString from "query-string";
 
 function CardNews() {
   const location = useLocation();
-  const query = queryString.parse(location);
   const path = window.location.pathname.substring(1)
   const [activeCard, setActiveCard] = useState(path);
   // console.log(query);
