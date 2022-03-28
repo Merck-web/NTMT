@@ -14,15 +14,15 @@ function App() {
   const [token, setToken] = useState();
   useEffect(() => {
     // setToken(" ");
-    localStorage.setItem("token", "");
+    localStorage.setItem("token", 1);
   }, []);
   const auth = localStorage.getItem("token");
   console.log(auth);
   return (
     <Router>
-      <main className="container">
-        {auth !== "" ? (
-          <>
+      {auth !== "" ? (
+        <>
+          <main className="container">
             <Headers />
             <PersonalArea />
             <div className="routers">
@@ -42,12 +42,14 @@ function App() {
                 <PlanScreen />
               </Route>
             </div>
-            <Footer />
-          </>
-        ) : (
+          </main>
+          <Footer />
+        </>
+      ) : (
+        <main className="container">
           <Login />
-        )}
-      </main>
+        </main>
+      )}
     </Router>
   );
 }

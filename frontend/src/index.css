@@ -32,6 +32,7 @@ p {
   display: flex;
   align-items: center;
   color: #000000;
+  text-align: center;
 }
 .routers {
   margin-top: 40px;
@@ -223,5 +224,8 @@ input {
   .select {
     font-size: 14px;
     font-weight: 600;
+  }
+  .personal-area {
+    padding: 0 20px;
   }
 }
