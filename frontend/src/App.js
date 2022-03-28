@@ -26,21 +26,11 @@ function App() {
             <Headers />
             <PersonalArea />
             <div className="routers">
-              <Route path="/yvedomlenia">
-                <NotificationsScreen />
-              </Route>
-              <Route path="/ras">
-                <ScheduleScreen />
-              </Route>
-              <Route path="/fail">
-                <FileScreen />
-              </Route>
-              <Route path="/zachetka">
-                <RecordBookScreen />
-              </Route>
-              <Route path="/plan">
-                <PlanScreen />
-              </Route>
+              <Route path="/yvedomlenia" component={NotificationsScreen} />
+              <Route path="/ras" component={ScheduleScreen} />
+              <Route path="/fail" component={FileScreen} />
+              <Route path="/zachetka" component={RecordBookScreen} />
+              <Route path="/plan" component={PlanScreen} />
             </div>
           </main>
           <Footer />
