@@ -22,7 +22,7 @@ function Login() {
               <option value="1">Родитель</option>
             </select>
           </div>
-          <button className="btn-form">Отправить</button>
+          <button className="btn-form">Войти</button>
         </form>
       </div>
     </div>
