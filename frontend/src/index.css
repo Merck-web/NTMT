@@ -33,6 +33,7 @@ p {
   align-items: center;
   color: #000000;
   text-align: center;
+  margin-bottom: 40px;
 }
 .routers {
   margin-top: 40px;
@@ -207,6 +208,18 @@ input {
   font-weight: 700;
   text-align: center;
   color: #000000;
+}
+.content {
+  margin-bottom: 100px;
+}
+.fail-folder {
+  display: flex;
+  align-items: center;
+}
+.folder {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
 }
 @media (max-width: 440px) {
   .routers {

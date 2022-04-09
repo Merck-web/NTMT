@@ -22,21 +22,23 @@ function App() {
     <Router>
       {auth !== "" ? (
         <>
-          <main className="container">
+          <main className='container'>
             <Headers />
-            <PersonalArea />
-            <div className="routers">
-              <Route path="/yvedomlenia" component={NotificationsScreen} />
-              <Route path="/ras" component={ScheduleScreen} />
-              <Route path="/fail" component={FileScreen} />
-              <Route path="/zachetka" component={RecordBookScreen} />
-              <Route path="/plan" component={PlanScreen} />
+            <div className='content'>
+              <PersonalArea />
+              <div className='routers'>
+                <Route path='/yvedomlenia' component={NotificationsScreen} />
+                <Route path='/ras' component={ScheduleScreen} />
+                <Route path='/fail' component={FileScreen} />
+                <Route path='/zachetka' component={RecordBookScreen} />
+                <Route path='/plan' component={PlanScreen} />
+              </div>
             </div>
           </main>
           <Footer />
         </>
       ) : (
-        <main className="container">
+        <main className='container'>
           <Login />
         </main>
       )}

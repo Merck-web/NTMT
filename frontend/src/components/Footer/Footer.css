@@ -1,5 +1,10 @@
 .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   padding: 60px 54px 20px;
+  background-color: #fff;
 }
 .footer-title {
   font-family: "Montserrat";
