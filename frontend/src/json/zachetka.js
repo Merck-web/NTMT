@@ -1,0 +1,51 @@
+const zach = [
+  {
+    disciplina: "Технологии Web-разработки",
+    hours: "108",
+    itog: "Отлично",
+    date: "2022-01-19",
+    control: "Экзамен",
+    teacher: "Пепелышев Д.И.",
+  },
+  {
+    disciplina: "Технологии Web-разработки",
+    hours: "108",
+    itog: "Отлично",
+    date: "2022-01-19",
+    control: "Экзамен",
+    teacher: "Пепелышев Д.И.",
+  },
+  {
+    disciplina: "Технологии Web-разработки",
+    hours: "108",
+    itog: "Отлично",
+    date: "2022-01-19",
+    control: "Экзамен",
+    teacher: "Пепелышев Д.И.",
+  },
+  {
+    disciplina: "Технологии Web-разработки",
+    hours: "108",
+    itog: "Отлично",
+    date: "2022-01-19",
+    control: "Экзамен",
+    teacher: "Пепелышев Д.И.",
+  },
+  {
+    disciplina: "Технологии Web-разработки",
+    hours: "108",
+    itog: "Отлично",
+    date: "2022-01-19",
+    control: "Экзамен",
+    teacher: "Пепелышев Д.И.",
+  },
+  {
+    disciplina: "Технологии Web-разработки",
+    hours: "108",
+    itog: "Отлично",
+    date: "2022-01-19",
+    control: "Экзамен",
+    teacher: "Пепелышев Д.И.",
+  },
+];
+export default zach;
