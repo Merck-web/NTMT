@@ -33,22 +33,48 @@ module.exports = function (fastify, opts, next) {
                     groupId: {
                         type: 'integer'
                     },
-                    login:{
-                        type:'string'
+                    login: {
+                        type: 'string'
                     },
-                    password:{
-                        type:'string'
+                    password: {
+                        type: 'string'
                     }
                 },
                 required: ["name", "secondName", "patronomyc"]
+            },
+        },
+        async handler(request, reply) {
+            const data = await job.registration(request.body)
+            if (data.statusCode === 200) {
+                reply.status(200)
+                return data
+            } else {
+                reply.status(400)
+                return data
+            }
+        }
+    }) // Регистрация
+
+    fastify.route({
+        method: 'POST',
+        url: '/login',
+        schema: {
+            body: {
+                type: 'object',
+                properties: {
+                    type: {type: 'integer'},
+                    login: {type: 'string'},
+                    password: {type: 'string'}
+                },
+                required: ["type", "login", "password"]
             }
         },
         async handler(request, reply) {
-            const data = await job.registration(request.body,request.info)
-            if(data.statusCode === 200){
+            const data = await job.login(request.body)
+            if (data.statusCode == 200) {
                 reply.status(200)
                 return data
-            }else{
+            } else {
                 reply.status(400)
                 return data
             }
