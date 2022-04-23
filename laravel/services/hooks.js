@@ -1,13 +1,14 @@
 const jwt = require('jsonwebtoken');
 
-async function checkAccessHook(request) {
+async function checkAccessHook(request, reply, object = {}) {
     const headers = request.headers;
-    try {
+    try{
         let token = headers.access;
         const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
-        return decoded
+        request.info = decoded;
+        request.access = token;
 
-    } catch (e) {
+    }catch (e) {
         console.log(e)
     }
 }

@@ -1,4 +1,4 @@
-const {pool, constants, client} = require('../../dependencies')
+const {pool, constants} = require('../../dependencies')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -92,31 +92,31 @@ async function login(object) {
         const login = object.login
         const password = object.password
         if (type === constants.LOGIN_TYPES.activeDirectory) {
-            client.on('connect', () => {
-                console.log('Успешно подлючились к серверу')
-            })
-            const opts = `(&(username=${login},password=${password}))`
-            client.search('dc=NTMT', opts, (err, res) => {
-                if (err) {
-                    console.log(err)
-                } else {
-                    res.on('searchRequest', (searchRequest) => {
-                        console.log('searchRequest: ', searchRequest.messageID);
-                    });
-                    res.on('searchEntry', (entry) => {
-                        console.log('entry: ' + JSON.stringify(entry.object));
-                    });
-                    res.on('searchReference', (referral) => {
-                        console.log('referral: ' + referral.uris.join());
-                    });
-                    res.on('error', (err) => {
-                        console.error('error: ' + err.message);
-                    });
-                    res.on('end', (result) => {
-                        console.log('result: ' + result);
-                    });
-                }
-            })
+            // client.on('connect', () => {
+            //     console.log('Успешно подлючились к серверу')
+            // })
+            // const opts = `(&(username=${login},password=${password}))`
+            // client.search('dc=NTMT', opts, (err, res) => {
+            //     if (err) {
+            //         console.log(err)
+            //     } else {
+            //         res.on('searchRequest', (searchRequest) => {
+            //             console.log('searchRequest: ', searchRequest.messageID);
+            //         });
+            //         res.on('searchEntry', (entry) => {
+            //             console.log('entry: ' + JSON.stringify(entry.object));
+            //         });
+            //         res.on('searchReference', (referral) => {
+            //             console.log('referral: ' + referral.uris.join());
+            //         });
+            //         res.on('error', (err) => {
+            //             console.error('error: ' + err.message);
+            //         });
+            //         res.on('end', (result) => {
+            //             console.log('result: ' + result);
+            //         });
+            //     }
+            // })
         } else if (type === constants.LOGIN_TYPES.loginPassword) {
             const querySelectUserByLogin = `SELECT *
                                             FROM users

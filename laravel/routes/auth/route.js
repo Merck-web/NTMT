@@ -1,9 +1,5 @@
-const {checkAccessHook} = require("../../services/hooks");
 const job = require('../../handlers/auth/handler')
 module.exports = function (fastify, opts, next) {
-    // fastify.addHook('onRequest', async (request, reply) => {
-    //     return await checkAccessHook(request, reply);
-    // });
 
     fastify.route({
         method: 'POST',
