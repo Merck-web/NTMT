@@ -45,11 +45,28 @@ async function registration(object) {
                         object.groupId
                     ])
                 if (resInsertUsers.rows.length > 0) {
-                    await client.query('COMMIT')
-                    data = {
-                        message: 'success',
-                        statusCode: 200
+                    const queryInsertUserRole = `INSERT INTO userroles ("userId", "roleId")
+                                                 VALUES ($1, $2)`
+                    const resInsertUserRole = await client.query(queryInsertUserRole,
+                        [
+                            resInsertUsers.rows[0].id,
+                            object.role
+                        ])
+                    if (resInsertUserRole.rows.length > 0) {
+                        await client.query('COMMIT')
+                        data = {
+                            message: 'success',
+                            statusCode: 200
+                        }
+                    } else {
+                        await client.query('ROLLBACK')
+                        data = {
+                            message: 'Ошибка при создании роли пользователя',
+                            statusCode: 400
+                        }
+                        console.log('ERROR:Ошибка при создании пользователя')
                     }
+
                 } else {
                     await client.query('ROLLBACK')
                     data = {
@@ -128,8 +145,16 @@ async function login(object) {
             if (resSelectUserByLogin.rows.length > 0) {
                 const userPassword = resSelectUserByLogin.rows[0].password
                 const userId = resSelectUserByLogin.rows[0].id
+                const querySelectRole = `SELECT *
+                                         FROM userroles
+                                         WHERE "userId" = $1`
+                const resSelectRole = await client.query(querySelectRole,
+                    [
+                        userId
+                    ])
+                const roleId = resSelectRole.rows[0].roleId
                 if (await bcrypt.compare(password, userPassword) == true) {
-                    const token = await jwt.sign({userId: userId}, process.env.PRIVATE_KEY, {
+                    const token = await jwt.sign({userId: userId, roleId: roleId}, process.env.PRIVATE_KEY, {
                         expiresIn: '24h'
                     })
                     data = {

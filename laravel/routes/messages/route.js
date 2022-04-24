@@ -13,7 +13,7 @@ module.exports = function (fastify, opts, next) {
             params: {
                 type: 'object',
                 properties: {
-                    list: {type:'string'}
+                    list: {type: 'string'}
                 }
             }
         },
@@ -28,7 +28,31 @@ module.exports = function (fastify, opts, next) {
                 return data
             }
         }
-    })
+    })//Получение всех сообщений пользователя
+
+    fastify.route({
+        method: 'POST',
+        url: '/get_info_about_message/:id',
+        schema: {
+            params: {
+                type: 'object',
+                properties: {
+                    id: {type: 'string'}
+                }
+            }
+        },
+        async handler(request, reply) {
+            const id = request.params.id
+            const data = await job.getInfoAboutMessage(request.body, request.info, id)
+            if (data.statusCode == 200) {
+                reply.status(200)
+                return data
+            } else {
+                reply.status(400)
+                return data
+            }
+        }
+    })//Получение информации о сообщении
 
     next()
 }

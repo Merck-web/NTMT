@@ -8,7 +8,7 @@ exports.up = pgm => {
             primaryKey: true
         },
         endMark: {
-            type: 'int',
+            type: 'varchar(250)',
             comment: 'Итоговая оценка',
             required: true
         },

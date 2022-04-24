@@ -40,9 +40,61 @@ async function getMessages(object, user, list) {
     return data
 }
 
-async function getInfoAboutMessage(object, user){
-
+async function getInfoAboutMessage(object, user, id) {
+    let data = {
+        message: '',
+        statusCode: 400
+    }
+    const client = await pool.connect()
+    try {
+        const querySelectMessage = `SELECT *
+                                    FROM messages
+                                    WHERE "id" = $1`
+        const resSelectMessage = await client.query(querySelectMessage,
+            [
+                id
+            ])
+        if (resSelectMessage.rows.length > 0) {
+            data = {
+                message: resSelectMessage.rows[0],
+                statusCode: 200
+            }
+        } else {
+            data = {
+                message: `Сообщения с id ${id} не существует`,
+                statusCode: 400
+            }
+            console.log(`Сообщения с id ${id} не существует`)
+        }
+    } catch (e) {
+        console.log(e)
+    } finally {
+        client.release()
+        console.log('client.release()')
+    }
+    return data
 }
+
+async function createMessage(object, user) {
+    let data = {
+        message: '',
+        statusCode: 400
+    }
+    const client = await pool.connect()
+    const userId = user.userId
+    const role = user.role
+    try {
+
+    } catch (e) {
+        console.log(e)
+    } finally {
+        client.release()
+        console.log('client.release()')
+    }
+    return data
+}
+
 module.exports = {
-    getMessages: getMessages
+    getMessages: getMessages,
+    getInfoAboutMessage: getInfoAboutMessage
 }
