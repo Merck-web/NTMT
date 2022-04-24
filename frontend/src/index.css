@@ -285,10 +285,28 @@ input {
   height: 2px;
   background: #000000;
 }
-.zach-detail{
+.zach-detail {
   line-height: 16px;
   padding: 20px 0;
-  border-bottom: 1px solid #CCCCCC;
+  border-bottom: 1px solid #cccccc;
+}
+.plan-table .main-tr td:first-child {
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 21px;
+  color: #000000;
+}
+.plan-table tr:not(.main-tr) {
+  background: rgba(237, 238, 240, 0.5);
+}
+.plan-table tr:not(.main-tr) td {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+.plan-table td:first-child {
+  text-align: left;
+  padding-left: 10px;
 }
 @media (max-width: 440px) {
   .routers {
