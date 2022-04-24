@@ -1,4 +1,4 @@
-const plan = [
+export const plan = [
   {
     disp: "Б1. Дисциплины (модули)",
     allTime: 148,
@@ -29,10 +29,13 @@ const plan = [
       },
     ],
   },
+];
+
+export const practise = [
   {
     disp: "Б2. Практика",
     allTime: 21,
-    subjects: [
+    subjects_pr: [
       {
         subject: "2.1. Производственная практика, проектно-технологическая",
         hours: 6,
@@ -54,5 +57,3 @@ const plan = [
     ],
   },
 ];
-
-export default plan;

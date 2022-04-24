@@ -1,10 +1,9 @@
-import React, {useState} from "react";
-import plan from "../json/plan";
+import React from "react";
+import { plan, practise } from "../json/plan";
 
 function PlanScreen() {
-  const [disp, setDisp] = useState();
-  const [practise, setPractise] = useState();
-  console.log(plan)
+  const { subjects } = plan[0];
+  const { subjects_pr } = practise[0];
   return (
     <div>
       <div className='title'>Учебный план</div>
@@ -19,10 +18,10 @@ function PlanScreen() {
           <span>Выбор семестра:</span> Все семестры
         </div>
       </div>
-      <div className='details-table'>
+      <div className='details-table plan-table'>
         <table className='detail-table'>
           <thead className='detail-thead'>
-            <tr>
+            <tr className='main-tr'>
               <td>Дисциплина</td>
               <td>Кол-во зачетных единиц/часов</td>
               <td>Отчетность</td>
@@ -30,12 +29,32 @@ function PlanScreen() {
             </tr>
           </thead>
           <tbody>
-            {plan.map((plan, index) => (
+            <tr className='main-tr'>
+              <td className='zach-detail'>{plan[0].disp}</td>
+              <td className='zach-detail'>{plan[0].allTime}</td>
+              <td className='zach-detail'></td>
+              <td className='zach-detail'></td>
+            </tr>
+            {subjects.map((sub, index) => (
               <tr key={index}>
-                <td className='zach-detail'>{plan.disciplina}</td>
-                <td className='zach-detail'>{plan.hours}</td>
-                <td className='zach-detail'>{plan.itog}</td>
-                <td className='zach-detail'>{plan.date}</td>
+                <td className='zach-detail'>{sub.subject}</td>
+                <td className='zach-detail'>{sub.hours}</td>
+                <td className='zach-detail'>{sub.result}</td>
+                <td className='zach-detail'>{sub.semestrs}</td>
+              </tr>
+            ))}
+            <tr className='main-tr'>
+              <td className='zach-detail'>{practise[0].disp}</td>
+              <td className='zach-detail'>{practise[0].allTime}</td>
+              <td className='zach-detail'></td>
+              <td className='zach-detail'></td>
+            </tr>
+            {subjects_pr.map((pract, index) => (
+              <tr key={index}>
+                <td className='zach-detail'>{pract.subject}</td>
+                <td className='zach-detail'>{pract.hours}</td>
+                <td className='zach-detail'>{pract.result}</td>
+                <td className='zach-detail'>{pract.semestrs}</td>
               </tr>
             ))}
           </tbody>
