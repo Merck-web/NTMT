@@ -1,7 +1,11 @@
 const {pool, constants} = require('../../dependencies')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const ldap = require('ldapjs')
 
+const ldapClient = ldap.createClient({
+    url: 'ldap://192.168.43.230:389'
+})
 
 async function registration(object) {
     let data = {
@@ -109,31 +113,39 @@ async function login(object) {
         const login = object.login
         const password = object.password
         if (type === constants.LOGIN_TYPES.activeDirectory) {
-            // client.on('connect', () => {
-            //     console.log('Успешно подлючились к серверу')
-            // })
-            // const opts = `(&(username=${login},password=${password}))`
-            // client.search('dc=NTMT', opts, (err, res) => {
-            //     if (err) {
-            //         console.log(err)
-            //     } else {
-            //         res.on('searchRequest', (searchRequest) => {
-            //             console.log('searchRequest: ', searchRequest.messageID);
-            //         });
-            //         res.on('searchEntry', (entry) => {
-            //             console.log('entry: ' + JSON.stringify(entry.object));
-            //         });
-            //         res.on('searchReference', (referral) => {
-            //             console.log('referral: ' + referral.uris.join());
-            //         });
-            //         res.on('error', (err) => {
-            //             console.error('error: ' + err.message);
-            //         });
-            //         res.on('end', (result) => {
-            //             console.log('result: ' + result);
-            //         });
-            //     }
-            // })
+            await ldapClient.on('connect', () => {
+                console.log('Успешно подлючились к серверу')
+            })
+            const opts = {
+                scope: 'sub',
+                filter: `(username=${login})`
+            }
+           await ldapClient.bind(login,password,err => {
+                console.log(err);
+            });
+            // String dn = "cn=" + userName + "," + "CN=Users," + base;
+            await ldapClient.search(`o='NTMT',cn='Alexander'`, opts, (err, res) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    res.on('searchRequest', (searchRequest) => {
+                        console.log('searchRequest: ', searchRequest);
+                    });
+                    res.on('searchEntry', (entry) => {
+                        console.log('Зашли')
+                        console.log('entry: ' + JSON.stringify(entry.object));
+                    });
+                    res.on('searchReference', (referral) => {
+                        console.log('referral: ' + referral.uris.join());
+                    });
+                    res.on('error', (err) => {
+                        console.error('error: ' + err.message);
+                    });
+                    res.on('end', (result) => {
+                        console.log('result: ' + result);
+                    });
+                }
+            })
         } else if (type === constants.LOGIN_TYPES.loginPassword) {
             const querySelectUserByLogin = `SELECT *
                                             FROM users
@@ -183,7 +195,8 @@ async function login(object) {
             }
             console.log(`Вход типа ${type} недоступен`)
         }
-    } catch (e) {
+    } catch
+        (e) {
         console.log(e)
     } finally {
         client.release()
