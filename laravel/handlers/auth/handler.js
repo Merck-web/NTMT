@@ -2,8 +2,52 @@ const {pool, constants} = require('../../dependencies')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const ldap = require('ldapjs')
+const ldapClient = ldap.createClient({
+    url: 'ldap://192.168.43.230:389'
+})
 
+async function authenticateDn(login, password, object) {
+    let data = false
+    await ldapClient.bind(login, password, (err) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('Success')
+            data = true
+            search()
+            return data
+        }
+    });
+}
 
+async function search() {
+    var opts = {
+        // filter: '(sn=Shmakov)',
+        filter: '(sn=Shmakov)',
+        scope: 'sub',
+        attributes: ['dc', 'dn', 'sn', 'cn'],
+        givenName: 'snowflake'
+
+    };
+    await ldapClient.search('dc=ntmt,dc=local', opts, function (err, res) {
+        if (err) {
+            console.log("Error in search " + err)
+        } else {
+            res.on('searchEntry', function (entry) {
+                console.log('entry: ' + JSON.stringify(entry.object));
+            });
+            res.on('searchReference', function (referral) {
+                console.log('referral: ' + referral.uris.join());
+            });
+            res.on('error', function (err) {
+                console.error('error: ' + err.message);
+            });
+            res.on('end', function (result) {
+                console.log('status: ' + result.status);
+            });
+        }
+    });
+}
 
 async function registration(object) {
     let data = {
@@ -48,7 +92,8 @@ async function registration(object) {
                     ])
                 if (resInsertUsers.rows.length > 0) {
                     const queryInsertUserRole = `INSERT INTO userroles ("userId", "roleId")
-                                                 VALUES ($1, $2) RETURNING *`
+                                                 VALUES ($1, $2)
+                                                 RETURNING *`
                     const resInsertUserRole = await client.query(queryInsertUserRole,
                         [
                             Number(resInsertUsers.rows[0].id),
@@ -111,7 +156,9 @@ async function login(object) {
         const login = object.login
         const password = object.password
         if (type === constants.LOGIN_TYPES.activeDirectory) {
-           // authenticateDn(login,password)
+            await authenticateDn('ntmt\\' + login, password)
+            // await search()
+
         } else if (type === constants.LOGIN_TYPES.loginPassword) {
             const querySelectUserByLogin = `SELECT *
                                             FROM users
@@ -176,16 +223,3 @@ module.exports = {
     login: login
 }
 
-// async function authenticateDn(login,password) {
-//     const ldapClient = ldap.createClient({
-//         url: 'ldap://192.168.43.230:389'
-//     })
-//
-//    await ldapClient.bind(`dn='NTMT/Администратор'`, password, (err) => {
-//         if(err){
-//             console.log(err)
-//         }else{
-//             console.log('Success')
-//         }
-//     });
-// }
