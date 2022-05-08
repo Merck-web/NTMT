@@ -14,16 +14,24 @@ const TYPES_OF_STUDYING = {
 }
 const TYPES_OF_EXAM = {
     exam: 1,
-    offset: 2
+    offset: 2,
+    1: 'зачет',
+    2: 'экзамен'
 }
 const TYPES_OF_SEMESTERS = {
     autumn: 1, // Осень
     spring: 2 // Весна
+}
+
+const FILE_TYPES = {
+    1: '.txt',
+    '.txt' : 1
 }
 module.exports = {
     LOGIN_TYPES: LOGIN_TYPES,
     USER_ROLES: USER_ROLES,
     TYPES_OF_STUDYING: TYPES_OF_STUDYING,
     TYPES_OF_EXAM: TYPES_OF_EXAM,
-    TYPES_OF_SEMESTERS: TYPES_OF_SEMESTERS
+    TYPES_OF_SEMESTERS: TYPES_OF_SEMESTERS,
+    FILE_TYPES:FILE_TYPES
 }

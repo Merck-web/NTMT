@@ -2,15 +2,14 @@
 exports.shorthands = undefined;
 
 exports.up = pgm => {
-    pgm.createTable('logintypes', {
+    pgm.createTable('examtypes', {
         id: {
             type: 'bigserial',
             primaryKey: true
         },
-        type:{
-            type:'varchar(150)',
-            comment:'вход через active directory или логин+пароль'
-        }
+       value:{
+            type:'varchar(250)'
+       }
     }, {
         ifNotExists: true,
     });

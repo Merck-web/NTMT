@@ -1,32 +1,39 @@
-const job = require('../../handlers/recordbook/handler')
 const {checkAccessHook} = require("../../services/hooks");
+const job = require('../../handlers/files/handler')
 module.exports = function (fastify, opts, next) {
     fastify.addHook('onRequest', async (request, reply) => {
         return await checkAccessHook(request, reply);
     });
+
     fastify.route({
         method: 'POST',
-        url: '/get_info',
+        url: '/upload',
         schema: {
             body: {
                 type: 'object',
                 properties: {
-                    semestrId: {type: 'integer'},
-                    year: {type: 'integer'}
+                    files: {
+                        type: 'array',
+                        items: fastify.getSchema('MultipartFileType')
+                    }
                 }
             },
             response: {
                 400: {
                     type: 'object',
                     properties: {
-                        message: {type: 'string'},
-                        statusCode: {type: 'integer'}
+                        message: {
+                            type: 'string'
+                        },
+                        statusCode: {
+                            type: 'integer'
+                        }
                     }
                 }
             }
         },
         async handler(request, reply) {
-            const data = await job.getRecordBook(request.body, request.info)
+            const data = await job.uploadFiles(request.body, request.info)
             if (data.statusCode == 200) {
                 reply.status(200)
                 return data

@@ -84,7 +84,7 @@ async function createMessage(object, user) {
     const userId = user.userId
     const role = user.role
     try {
-
+            //todo сделать для админа
     } catch (e) {
         console.log(e)
     } finally {

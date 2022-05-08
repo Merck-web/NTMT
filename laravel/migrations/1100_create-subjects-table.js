@@ -15,6 +15,9 @@ exports.up = pgm => {
         },
         examType:{
             type:'int'
+        },
+        userId:{
+            type:'bigint'
         }
     }, {
         ifNotExists: true,

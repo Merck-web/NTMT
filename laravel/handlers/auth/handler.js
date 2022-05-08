@@ -48,10 +48,10 @@ async function registration(object) {
                     ])
                 if (resInsertUsers.rows.length > 0) {
                     const queryInsertUserRole = `INSERT INTO userroles ("userId", "roleId")
-                                                 VALUES ($1, $2)`
+                                                 VALUES ($1, $2) RETURNING *`
                     const resInsertUserRole = await client.query(queryInsertUserRole,
                         [
-                            resInsertUsers.rows[0].id,
+                            Number(resInsertUsers.rows[0].id),
                             object.role
                         ])
                     if (resInsertUserRole.rows.length > 0) {
@@ -66,7 +66,7 @@ async function registration(object) {
                             message: 'Ошибка при создании роли пользователя',
                             statusCode: 400
                         }
-                        console.log('ERROR:Ошибка при создании пользователя')
+                        console.log('ERROR:Ошибка при роли пользователя')
                     }
 
                 } else {
@@ -111,7 +111,7 @@ async function login(object) {
         const login = object.login
         const password = object.password
         if (type === constants.LOGIN_TYPES.activeDirectory) {
-           authenticateDn(login,password)
+           // authenticateDn(login,password)
         } else if (type === constants.LOGIN_TYPES.loginPassword) {
             const querySelectUserByLogin = `SELECT *
                                             FROM users
@@ -176,16 +176,16 @@ module.exports = {
     login: login
 }
 
-async function authenticateDn(login,password) {
-    const ldapClient = ldap.createClient({
-        url: 'ldap://192.168.43.230:389'
-    })
-
-   await ldapClient.bind(`dn='NTMT/Администратор'`, password, (err) => {
-        if(err){
-            console.log(err)
-        }else{
-            console.log('Success')
-        }
-    });
-}
+// async function authenticateDn(login,password) {
+//     const ldapClient = ldap.createClient({
+//         url: 'ldap://192.168.43.230:389'
+//     })
+//
+//    await ldapClient.bind(`dn='NTMT/Администратор'`, password, (err) => {
+//         if(err){
+//             console.log(err)
+//         }else{
+//             console.log('Success')
+//         }
+//     });
+// }

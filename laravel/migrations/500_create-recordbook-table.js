@@ -24,7 +24,11 @@ exports.up = pgm => {
         },
         semestrId:{
             type:'bigint'
+        },
+        year:{
+            type:'integer'
         }
+
 
     }, {
         ifNotExists: true,
