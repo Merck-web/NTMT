@@ -22,10 +22,10 @@ async function authenticateDn(login, password, object) {
 
 async function search() {
     var opts = {
-        // filter: '(sn=Shmakov)',
-        filter: '(sn=Shmakov)',
+        filter: '(sAMAccountName=snowflake)',
+        // filter: '(email=schmakov8@gmail.com)',
         scope: 'sub',
-        attributes: ['dc', 'dn', 'sn', 'cn'],
+        attributes: ['dc', 'dn', 'sn', 'cn','sAMAccountName'],
         givenName: 'snowflake'
 
     };
