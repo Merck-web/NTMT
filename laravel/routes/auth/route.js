@@ -66,7 +66,11 @@ module.exports = function (fastify, opts, next) {
             }
         },
         async handler(request, reply) {
-            const data = await job.login(request.body)
+            if(request.body.type == 1){
+              return  await job.login(request.body,reply)
+            }
+            const data = await job.login(request.body,reply)
+            console.log(data)
             if (data.statusCode == 200) {
                 reply.status(200)
                 return data
