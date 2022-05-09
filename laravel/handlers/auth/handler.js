@@ -2,9 +2,9 @@ const {pool, constants} = require('../../dependencies')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const ldap = require('ldapjs')
-// const ldapClient = ldap.createClient({
-//     url: 'ldap://192.168.43.230:389'
-// })
+const ldapClient = ldap.createClient({
+    url: 'ldap://192.168.43.230:389'
+})
 const eventEmmiter = require('events')
 const emmiter = new eventEmmiter()
 
@@ -216,6 +216,7 @@ async function login(object, reply) {
                 }
             });
             emmiter.on('searchEntry', async (args, reply) => {
+                console.log(args)
                 const token = await jwt.sign({sAMAccountName: args.sAMAccountName}, process.env.PRIVATE_KEY, {
                     expiresIn: '24h'
                 })
