@@ -27,11 +27,19 @@ const FILE_TYPES = {
     1: '.txt',
     '.txt' : 1
 }
+
+const MIME_IMAGES = [
+    'image/jpeg',
+    'image/png',
+    'text/plain'
+];
+
 module.exports = {
     LOGIN_TYPES: LOGIN_TYPES,
     USER_ROLES: USER_ROLES,
     TYPES_OF_STUDYING: TYPES_OF_STUDYING,
     TYPES_OF_EXAM: TYPES_OF_EXAM,
     TYPES_OF_SEMESTERS: TYPES_OF_SEMESTERS,
-    FILE_TYPES:FILE_TYPES
+    FILE_TYPES:FILE_TYPES,
+    MIME_IMAGES:MIME_IMAGES
 }

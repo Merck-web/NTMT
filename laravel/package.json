@@ -4,6 +4,8 @@
     "start": "node main.js"
   },
   "dependencies": {
+    "@fastify/multipart": "^6.0.0",
+    "base64-arraybuffer": "^1.0.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.0",
     "fastify": "^3.28.0",
@@ -19,6 +21,7 @@
     "npm": "^8.9.0",
     "pg": "^8.7.3",
     "pg-pool": "^3.5.1",
+    "read-excel-file": "^5.2.28",
     "uuid": "^8.3.2"
   }
 }

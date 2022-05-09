@@ -5,36 +5,43 @@ async function uploadFiles(object, user) {
         message: '',
         statusCode: 400
     }
-    const funcName = "uploadFiles"
     const client = await pool.connect()
     let uploadsFiles = []
     try {
+        console.log(object.files.length)
         const queryInsertFiles = `INSERT INTO files ("userId", "fileType", "filePath", "fileMeta")
                                   VALUES ($1, $2, $3, $4)
                                   RETURNING *`
         for (let i = 0; i < object.files.length; i++) {
-            const upload = filesystem.uploadFiles(filesystem.userFiles, object.files[i], {
-                customStr: `u ${user.userId} date ${(new Date).getTime()}`
+            const upload = filesystem.uploadFile(filesystem.userFiles, object.files[i], {
+                customStr: "u" + user.userId,
+                customMIME: constants.MIME_IMAGES
             })
             const resInsertFiles = await client.query(queryInsertFiles,
                 [
                     user.userId,
-                    constants.FILE_TYPES["1"],
+                    constants.FILE_TYPES[".txt"],
                     upload.path,
                     {}
                 ])
             uploadsFiles.push(resInsertFiles.rows[0])
         }
-        if(uploadsFiles.length != 0){
+        if (uploadsFiles.length != 0) {
             data = {
                 message: uploadsFiles,
                 statusCode: 200
             }
-        }else{
-
+        } else {
+            data = {
+                message: 'ОШИБОЧКА',
+                statusCode: 228
+            }
         }
     } catch (e) {
-
+        data = {
+            message: e.message,
+            statusCode: 400
+        }
     } finally {
         client.release()
     }

@@ -1,8 +1,11 @@
 const fs = require('fs');
 const UUID = require('uuid');
 const mimeTypes = require('mime-types');
+
+
+
 const mainDirectory = './public'
-const userFiles = mainDirectory + './userFiles'
+const userFiles = mainDirectory + '/userFiles'
 const limit = 10485760; // 10 MB
 try {
     if (!fs.existsSync(mainDirectory)) {
@@ -59,6 +62,7 @@ function uploadFile(folder, file, options = {}) {
     } catch (e) {
         data.message = e.message
     }
+    console.log(data)
     return data
 }
 
