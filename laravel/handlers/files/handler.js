@@ -48,6 +48,41 @@ async function uploadFiles(object, user) {
     return data
 }
 
+async function getUserFiles(object, user) {
+    let data = {
+        message: '',
+        statusCode: 400
+    }
+    const client = await pool.connect()
+    try {
+        const querySelectFiles = `SELECT *
+                                  FROM files
+                                  WHERE "userId" = $1`
+        const resSelectFiles = await client.query(querySelectFiles,
+            [
+                user.userId
+            ])
+        if (resSelectFiles.rows.length > 0) {
+            data = {
+                message: resSelectFiles.rows,
+                statusCode: 200
+            }
+        } else {
+            data = {
+                message: 'У данного пользователя нет файлов',
+                statusCode: 400
+            }
+        }
+    } catch (e) {
+        data = {
+            message: e.message,
+            statusCode: 400
+        }
+    }
+    return data
+}
+
 module.exports = {
-    uploadFiles: uploadFiles
+    uploadFiles: uploadFiles,
+    getUserFiles: getUserFiles
 }

@@ -22,8 +22,9 @@ const schema = {
     }
 }
 
-async function getSchedule(group, file, reply) {
-    await readXlsxFile(`./public/schedule/${file}.xlsx`, {schema}, group).then(async (arr) => {
+ async function getSchedule(group, file) {
+    let data
+   await readXlsxFile(`./public/schedule/${file}.xlsx`, {schema}, group).then(async (arr) => {
         let ob = new Map()
         let array = []
         for (let i = 0; i < arr.rows.length; i++) {
@@ -32,10 +33,11 @@ async function getSchedule(group, file, reply) {
             }
         }
         ob.set(group, array)
-        const scheduleData = ob.get(group)
-        await reply.send(scheduleData)
-        return scheduleData
+        data = ob.get(group)
+
+
     })
+     return data
 }
 
 module.exports = {

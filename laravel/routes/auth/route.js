@@ -67,9 +67,9 @@ module.exports = function (fastify, opts, next) {
         },
         async handler(request, reply) {
             if(request.body.type == 1){
-              return  await job.login(request.body,reply)
+              return  await job.login2(request.body,reply)
             }
-            const data = await job.login(request.body,reply)
+            const data = await job.login2(request.body,reply)
             console.log(data)
             if (data.statusCode == 200) {
                 reply.status(200)
@@ -79,7 +79,7 @@ module.exports = function (fastify, opts, next) {
                 return data
             }
         }
-    })
+    }) //Авторизация
 
     next()
 }

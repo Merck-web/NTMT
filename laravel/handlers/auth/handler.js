@@ -103,7 +103,12 @@ async function registration(object) {
                     object.grant
                 ])
             if (resInsertBios.rows.length > 0) {
-                const hashPassword = bcrypt.hashSync(object.password, 5)
+                let hashPassword
+                if (object.type != 1) {
+                    hashPassword = bcrypt.hashSync(object.password, 5)
+                } else {
+                    hashPassword = object.password
+                }
                 const queryInsertUsers = `INSERT INTO users ("bioId", "typesId", "login", "password", "groupId")
                                           VALUES ($1, $2, $3, $4, $5)
                                           RETURNING *`
@@ -115,6 +120,9 @@ async function registration(object) {
                         hashPassword,
                         object.groupId
                     ])
+                await client.query(`UPDATE bios
+                                    SET "userId" = $1
+                                    WHERE id = $2`, [resInsertUsers.rows[0].id, resInsertBios.rows[0].id])
                 if (resInsertUsers.rows.length > 0) {
                     const queryInsertUserRole = `INSERT INTO userroles ("userId", "roleId")
                                                  VALUES ($1, $2)
@@ -170,7 +178,7 @@ async function registration(object) {
     return data
 }
 
-async function login(object, reply) {
+async function login2(object, reply) {
     let data = {
         message: '',
         statusCode: 400
@@ -217,14 +225,58 @@ async function login(object, reply) {
             });
             emmiter.on('searchEntry', async (args, reply) => {
                 console.log(args)
-                const token = await jwt.sign({sAMAccountName: args.sAMAccountName}, process.env.PRIVATE_KEY, {
-                    expiresIn: '24h'
-                })
-                userData = {
-                    message: token,
-                    statusCode: 200
+                const groupCode = args.department
+                const name = args.givenName
+                const secondName = args.sn
+                const querySelectGroup = `SELECT *
+                                          FROM groups
+                                          WHERE "code" = $1`
+                const resSelectGroup = await client.query(querySelectGroup,
+                    [
+                        groupCode
+                    ])
+                if (resSelectGroup.rows.length > 0) {
+                    const querySelectBio = `SELECT *
+                                            FROM bios
+                                            WHERE "name" = $1
+                                              AND "secondName" = $2`
+                    const resSelectBio = await client.query(querySelectBio,
+                        [
+                            name,
+                            secondName
+                        ])
+                    if (resSelectBio.rows.length == 0) {
+                        let registerObject = {
+                            name: name,
+                            secondName: secondName,
+                            type: constants.LOGIN_TYPES.activeDirectory,
+                            groupId: resSelectGroup.rows[0].id
+                        }
+                        let registerData = await registration(registerObject)
+                        console.log(registerData)
+                        await login2(object, reply)
+                    } else {
+                        const token = await jwt.sign(
+                            {
+                                sAMAccountName: args.sAMAccountName,
+                                userId: resSelectBio.rows[0].userId
+                            },
+                            process.env.PRIVATE_KEY, {
+                                expiresIn: '24h'
+                            })
+                        userData = {
+                            message: token,
+                            statusCode: 200
+                        }
+                        await reply.send(userData)
+                    }
+                } else {
+                    data = {
+                        message: 'Группы с таким номером не существует',
+                        statusCode: 400
+                    }
                 }
-                await reply.send(userData)
+
             })
             return userData
         } else if (type === constants.LOGIN_TYPES.loginPassword) {
@@ -288,6 +340,6 @@ async function login(object, reply) {
 
 module.exports = {
     registration: registration,
-    login: login
+    login2: login2
 }
 

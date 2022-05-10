@@ -24,6 +24,9 @@ exports.up = pgm => {
         },
         grant: {
             type: 'integer'
+        },
+        userId:{
+            type:'bigint'
         }
     }, {
         ifNotExists: true,

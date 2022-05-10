@@ -12,7 +12,12 @@ module.exports = function (fastify, opts, next) {
             body: {
                 type: 'object',
                 properties: {
-                    fileName: {type: 'string'}
+                    files: {
+                        type: 'array',
+                        properties: {
+                            fileName: {type: 'string'}
+                        }
+                    }
                 }
             },
             response: {
@@ -26,7 +31,8 @@ module.exports = function (fastify, opts, next) {
             }
         },
         async handler(request, reply) {
-            const data = await job.getUserSchedule(request.body,request.info,reply)
+            const data = await job.getUserSchedule(request.body, request.info, reply)
+            console.log(data)
             return data
         }
     })

@@ -1,61 +1,58 @@
-const ldap = require("ldapjs");
-const eventEmmiter = require('events')
-const jwt = require("jsonwebtoken");
-const emmiter = new eventEmmiter()
-const ldapClient = ldap.createClient({
-    url: 'ldap://192.168.43.230:389'
-})
+const {pool, constants} = require('../../dependencies')
 const getSchedule = require('../../services/libs/excelparser')
 
-async function getUserSchedule(object, user, reply) {
+async function getUserSchedule(object, user) {
     let data = {
         message: '',
         statusCode: 400
     }
+    console.log(user)
+    const client = await pool.connect()
     try {
-        let login = user.sAMAccountName
-        ldapClient.bind('ntmt\\' + `Администратор`, 'q20047878qQ', (err) => {
-            if (err) {
-                console.log(err)
+        const querySeletUser = `SELECT *
+                                FROM users
+                                WHERE id = $1`
+        const resSelectUser = await client.query(querySeletUser,
+            [
+                user.userId
+            ])
+        if (resSelectUser.rows.length > 0) {
+            const querySelectGroup = `SELECT *
+                                      FROM groups
+                                      WHERE id = $1`
+            const resSelectGroup = await client.query(querySelectGroup,
+                [
+                    resSelectUser.rows[0].groupId
+                ])
+            if (resSelectGroup.rows.length > 0) {
+                let excelData = []
+                for (let i = 0; i < object.files.length; i++) {
+                    excelData.push(object.files[i].fileName, (await getSchedule.getSchedule(resSelectGroup.rows[0].code, object.files[i].fileName)))
+                }
+                data = {
+                    message: excelData,
+                    statusCode: 200
+                }
             } else {
-                console.log('Success')
-                check = true
+                data = {
+                    message: 'Ошибка получения информации о группе',
+                    statusCode: 400
+                }
             }
-            console.log(check)
-            if (check == true) {
-                var opts = {
-                    filter: `(sAMAccountName=${login})`,
-                    scope: 'sub',
-                    // attributes: ['dc', 'dn', 'sn', 'cn', 'sAMAccountName'],
-                };
-                ldapClient.search('dc=ntmt,dc=local', opts, function (err, res) {
-                    if (err) {
-                        console.log("Error in search " + err)
-                    } else {
-                        res.on('searchEntry', function (entry) {
-                            // console.log('entry: ' + JSON.stringify(entry.object));
-                            emmiter.emit('searchEntry', entry.object, reply)
-                        });
-                        res.on('error', function (err) {
-                            console.error('error: ' + err.message);
-                        });
-                    }
-                });
-            } else {
-                //todo ошибка при авторизации
+
+        } else {
+            data = {
+                message: 'Ошибка получения пользователя по id из токена',
+                statusCode: 400
             }
-        });
-        emmiter.on('searchEntry', async (args, reply) => {
-            console.log(args)
-            await getSchedule.getSchedule(args.department, object.fileName, reply)
-        })
+        }
     } catch (e) {
         data = {
             message: e.message,
             statusCode: 400
         }
-        return data
     }
+    return data
 }
 
 module.exports = {
