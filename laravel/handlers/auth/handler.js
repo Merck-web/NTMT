@@ -2,9 +2,9 @@ const {pool, constants} = require('../../dependencies')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const ldap = require('ldapjs')
-const ldapClient = ldap.createClient({
-    url: 'ldap://192.168.43.230:389'
-})
+// const ldapClient = ldap.createClient({
+//     url: 'ldap://192.168.43.230:389'
+// })
 const eventEmmiter = require('events')
 const emmiter = new eventEmmiter()
 
@@ -186,12 +186,11 @@ async function login2(object, reply) {
 
     const client = await pool.connect()
     try {
-        const type = object.type
+        const type = object.type // Получаем тип пользователя
         const login = object.login
         const password = object.password
-        if (type === constants.LOGIN_TYPES.activeDirectory) {
+        if (type === constants.LOGIN_TYPES.activeDirectory) { // Если пользователь авторизуется через active directory
             let check = false
-            // console.log(await authenticateDn('ntmt\\' + login, password));
             ldapClient.bind('ntmt\\' + `Администратор`, password, (err) => {
                 if (err) {
                     console.log(err)
@@ -204,14 +203,12 @@ async function login2(object, reply) {
                     var opts = {
                         filter: `(sAMAccountName=${login})`,
                         scope: 'sub',
-                        // attributes: ['dc', 'dn', 'sn', 'cn', 'sAMAccountName'],
                     };
                     ldapClient.search('dc=ntmt,dc=local', opts, function (err, res) {
                         if (err) {
                             console.log("Error in search " + err)
                         } else {
                             res.on('searchEntry', function (entry) {
-                                // console.log('entry: ' + JSON.stringify(entry.object));
                                 emmiter.emit('searchEntry', entry.object, reply)
                             });
                             res.on('error', function (err) {
@@ -220,7 +217,7 @@ async function login2(object, reply) {
                         }
                     });
                 } else {
-                    //todo ошибка при авторизации
+                    console.log('Ошибка при авторизации')
                 }
             });
             emmiter.on('searchEntry', async (args, reply) => {
@@ -279,7 +276,7 @@ async function login2(object, reply) {
 
             })
             return userData
-        } else if (type === constants.LOGIN_TYPES.loginPassword) {
+        } else if (type === constants.LOGIN_TYPES.loginPassword) { //Если пользователь авторизуется через нашу базу
             const querySelectUserByLogin = `SELECT *
                                             FROM users
                                             WHERE "login" = $1`
