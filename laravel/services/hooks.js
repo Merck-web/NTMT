@@ -9,6 +9,8 @@ async function checkAccessHook(request, reply, object = {}) {
         request.access = token;
 
     }catch (e) {
+        reply.status(403)
+        reply.send({message:"access denied",statusCode:403})
         console.log(e)
     }
 }
