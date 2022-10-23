@@ -12,7 +12,7 @@ fastify.register(autoload, {
     dir: path.join(__dirname, './routes'),
 });
 fastify.register(require('fastify-routes'))
-
+fastify.register(require('fastify-cors'), {})
 // fastify.register(require('@fastify/multipart'))
 fastify.listen(3001, function (err, address) {
     if (err) {
