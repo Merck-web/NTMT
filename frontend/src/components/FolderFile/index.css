@@ -1,4 +1,4 @@
-a {
+.file-link {
   list-style: none;
   text-decoration: none;
   font-family: "Montserrat";
@@ -8,12 +8,11 @@ a {
   line-height: 16px;
   text-align: center;
   color: #000000;
-}
-.folder-link,
-.file-link {
   width: 119px;
   margin-top: 20px;
+  cursor: pointer;
 }
+
 .folder-link:not(:last-child),
 .file-link:not(:last-child) {
   margin-right: 30px;
