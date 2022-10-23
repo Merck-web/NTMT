@@ -26,23 +26,20 @@ async function uploadFiles(object, user) {
                     const resInsertFiles = await client.query(queryInsertFiles,
                         [
                             user.userId,
-                            object.fileType,
+                            object.files[i].fileType,
                             upload.path,
                             {fileName:object.files[i].filename.split('.')[0]}
                         ])
                     uploadsFiles.push(resInsertFiles.rows[0])
                 }else{
-                    await client.query('ROLLBACK')
-
-                    return data = {
+                     data = {
                         message:upload.message,
                         statusCode: 400
                     }
                 }
             }catch (e) {
                 console.log(e)
-                await client.query('ROLLBACK')
-                return data = {
+                 data = {
                     message:e.message,
                     statusCode: 400
                 }
@@ -58,7 +55,7 @@ async function uploadFiles(object, user) {
             await client.query('ROLLBACK')
             data = {
                 message: 'Ошибка',
-                statusCode: 228
+                statusCode: 400
             }
         }
     } catch (e) {
