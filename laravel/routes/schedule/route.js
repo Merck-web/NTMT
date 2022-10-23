@@ -32,7 +32,6 @@ module.exports = function (fastify, opts, next) {
         },
         async handler(request, reply) {
             const data = await job.getUserSchedule(request.body, request.info, reply)
-            console.log(data)
             return data
         }
     })

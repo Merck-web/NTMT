@@ -11,6 +11,7 @@ async function getMessages(object, user, list) {
     let listLimit = list * entriesOnPage - entriesOnPage
 
     try {
+        const qCount = await client.query(`select count(*)::integer  from usermessages where "userId" = $1`,[user.userId])
         const querySelectAllMessages = `SELECT *
                                         FROM usermessages um
                                                  LEFT JOIN messages m on um."messageId" = m.id
@@ -25,7 +26,8 @@ async function getMessages(object, user, list) {
             ])
         data = {
             message: resSelectAllMessages.rows,
-            statusCode: 200
+            statusCode: 200,
+            count:qCount.rows[0].count
         }
     } catch (e) {
         console.log(e)

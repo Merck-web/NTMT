@@ -28,14 +28,15 @@ const schema = {
         let ob = new Map()
         let array = []
         for (let i = 0; i < arr.rows.length; i++) {
+            console.log(arr.rows[i].group == group)
+            console.log(arr.rows[i])
             if (arr.rows[i].group == group) {
                 array.push(arr.rows[i])
             }
         }
+
         ob.set(group, array)
         data = ob.get(group)
-
-
     })
      return data
 }

@@ -29,6 +29,7 @@ async function getUserSchedule(object, user) {
                 for (let i = 0; i < object.files.length; i++) {
                     excelData.push(object.files[i].fileName, (await getSchedule.getSchedule(resSelectGroup.rows[0].code, object.files[i].fileName)))
                 }
+
                 data = {
                     message: excelData,
                     statusCode: 200
