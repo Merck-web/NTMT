@@ -1,4 +1,5 @@
 const {checkAccessHook} = require("../../services/hooks");
+const {constants} = require('../../dependencies')
 const job = require('../../handlers/files/handler')
 module.exports = function (fastify, opts, next) {
     fastify.addHook('onRequest', async (request, reply) => {
@@ -73,5 +74,36 @@ module.exports = function (fastify, opts, next) {
             }
         }
     })
+
+    fastify.route({
+        url:'/download',
+        method:'POST',
+        schema:{
+            body:{
+                type:'object',
+                properties:{
+                    fileId:{type:'integer'}
+                },
+                required:['fileId']
+            }
+        },
+        async handler(request,reply){
+            const data = await job.downloadFile(request.body,request.info)
+            if(data.statusCode === 200){
+                const type = data.message.fileType
+                if(type === constants.FILE_TYPES.word){
+                    reply.header('Content-Type',' application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+                }else if (type === constants.FILE_TYPES.excel){
+                    reply.header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                }else if( type === constants.FILE_TYPES[".txt"]){
+                    reply.header('Content-Type', 'text/plain');
+                }
+                reply.send(data.message.buffer)
+            }else{
+                reply.send({message:'error',statusCode:400})
+            }
+        }
+    })
+
     next()
 }

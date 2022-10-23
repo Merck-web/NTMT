@@ -25,7 +25,12 @@ const TYPES_OF_SEMESTERS = {
 
 const FILE_TYPES = {
     1: '.txt',
-    '.txt' : 1
+    '.txt': 1,
+    2: 'excel',
+    'excel': 2,
+    3: 'word',
+    'word': 3
+
 }
 
 const MIME_IMAGES = [
