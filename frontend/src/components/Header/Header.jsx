@@ -1,8 +1,26 @@
 import React from "react";
+import { useEffect } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { userRoles } from "../../boot/contants";
+import apiAccount from "../../api/account";
 
-function Headers() {
+function Headers({ setToken, setUser, user }) {
+
+  useEffect(async () => {
+      try {
+        const response = await apiAccount.info();
+        setUser(response.data.message);
+      } catch(error) {
+        console.error(error);
+        console.error('ERROR GET USER');
+      }
+  }, []);
+
+  function logOut() {
+    localStorage.removeItem('token');
+    setToken('');
+  }
   return (
     <header>
       <div className='header'>
@@ -21,11 +39,14 @@ function Headers() {
               alt='images/userProfile.svg'
             />
             <p className='bio'>
-              <span className='user-fio'>Иванов Иван Иванович </span>
-              <span className='user-group'>/ T-393901-НТ</span>
+              <span className='user-fio'>{ user.fio ? `${user.fio} /` : ''} </span>
+              <span className='user-group'>{user.groupName ? user.groupName : userRoles[user.roleId]}</span>
             </p>
           </div>
-          <div className='logout'>
+          <div
+              className='logout'
+              onClick={() => logOut()}
+          >
             <img
               className='logout-icon'
               src='images/logout.svg'

@@ -1,8 +1,17 @@
-import React from "react";
+import React, {useEffect, useState, useMemo} from "react";
 import "./SheduleTable.css";
+import apiSchedule from "../../api/schedule";
 
 function SheduleTable() {
-  var days = [
+  const [lessons, setLessons] = useState([]);
+
+  const nextDayLessons = useMemo(() => {
+    return lessons.filter(lesson => {
+      return new Date(lesson.date).getDay() === new Date().getDay() + 1;
+    });
+  }, [lessons]);
+
+  const days = [
     "Воскресенье",
     "Понедельник",
     "Вторник",
@@ -11,24 +20,29 @@ function SheduleTable() {
     "Пятница",
     "Суббота",
   ];
-  var d = new Date();
-  var n = d.getDay();
-  var lessons = [
-    "Математика",
-    "Математика",
-    "Математика",
-    "Русский",
-    "Математика",
-    "Математика",
-    "Математика",
-  ];
+
+  const day = new Date().getDay();
+
+  useEffect(async () => {
+      try {
+        const request = {
+          files: [{fileName: 'test2'}]
+        };
+        const response = await apiSchedule.get(request);
+        setLessons(response.data.message[0]);
+      } catch (error) {
+        console.error(error);
+        console.error('ERROR GET LESSONS');
+      }
+  }, []);
+
   return (
     <div className='shedule-table'>
       <table className='table'>
         <thead>
           <tr className='table-tr'>
-            <td className='table-td'>{days[n]}</td>
-            <td className='table-td'>{days[n + 1] ? days[n+1] : days[0]}</td>
+            <td className='table-td'>{days[day]}</td>
+            <td className='table-td'>{days[day + 1] ? days[day + 1] : days[0]}</td>
           </tr>
         </thead>
         <tbody>
@@ -36,16 +50,21 @@ function SheduleTable() {
             <td className='table-td'>
               <ul>
                 {lessons.map((lesson, index) => (
-                  <li key={index}>{lesson}</li>
+                    new Date().getDay() === new Date(lesson.date).getDay() &&
+                    <li key={index}>{lesson.lesson}</li>
                 ))}
               </ul>
             </td>
             <td className='table-td'>
-              <ul>
-                {lessons.map((lesson, index) => (
-                  <li key={index}> {lesson}</li>
-                ))}
-              </ul>
+              {nextDayLessons.length ?
+                  <ul>
+                    {nextDayLessons.map((lesson, index) => (
+                        <li key={index}>{lesson.lesson}</li>
+                    ))}
+                  </ul>
+                  :
+                  'Нет занятий'
+              }
             </td>
           </tr>
         </tbody>

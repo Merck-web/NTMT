@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
-import api from '../api'
+import React, { useState } from "react";
+import apiAuth from "../api/auth";
 
-function Login({ token }) {
+function Login({ setToken, setUser }) {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('1');
+  const [role, setRole] = useState('2');
 
   async function logIn() {
     if (!login.trim() || !password.trim()) {
@@ -16,11 +16,13 @@ function Login({ token }) {
           password: password,
           type: role,
         };
-        const data = await api.post('/auth/login', request);
-        token(data);
+        const response = await apiAuth.login(request);
+        setUser(response.data.message);
+        setToken(response.data.message.token);
       } catch (error) {
         console.error(error);
         console.error('ERROR LOG IN');
+        alert('Произошла ошибка при входе в личный кабинет. Попробуйте позже или обратитесь в техподдержку');
       }
     }
   }
@@ -31,6 +33,7 @@ function Login({ token }) {
         <div className="login-wrapper__title">
           Войти в учетную запись УрФУ
         </div>
+
         <div className="form">
           <input
               value={login}
@@ -39,6 +42,7 @@ function Login({ token }) {
               type="text"
               onChange={e => setLogin(e.target.value)}
           />
+
           <input
               value={password}
               className="input-pass"
@@ -46,17 +50,20 @@ function Login({ token }) {
               type="password"
               onChange={e => setPassword(e.target.value)}
           />
+
           <div className="filter">
-            <select
-                value={role}
-                className="select"
-                onChange={e => setRole(e.target.value)}
-            >
+            <select className="select">
               <option value="1">Студент/Преподаватель</option>
               <option value="2">Родитель</option>
             </select>
           </div>
-          <button className="btn-form" onClick={() => logIn()}>Войти</button>
+
+          <button
+              className="btn-form"
+              onClick={() => logIn()}
+          >
+            Войти
+          </button>
         </div>
       </div>
     </div>

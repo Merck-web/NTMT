@@ -11,19 +11,26 @@ import { useState, useEffect } from "react";
 import Login from "./screens/Login";
 
 function App() {
-  const [token, setToken] = useState({});
+  const [user, setUser] = useState({});
+  const [token, setToken] = useState('');
+
   useEffect(() => {
-    console.log(token)
-    // setToken(" ");
-    // localStorage.setItem("token", 1);
+    setToken(localStorage.getItem('token') || '');
+    if (token) {
+      localStorage.setItem('token', token || '');
+    }
   }, [token]);
-  const auth = localStorage.getItem("token");
+
   return (
     <Router>
-      {auth ? (
+      {token ? (
         <>
           <main className='container'>
-            <Headers />
+            <Headers
+                setToken={setToken}
+                user={user}
+                setUser={setUser}
+            />
             <div className='content'>
               <PersonalArea />
               <div className='routers'>
@@ -39,7 +46,10 @@ function App() {
         </>
       ) : (
         <main className='container'>
-          <Login token={setToken} />
+          <Login
+              setToken={setToken}
+              setUser={setUser}
+          />
         </main>
       )}
     </Router>
