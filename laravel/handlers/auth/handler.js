@@ -277,8 +277,13 @@ async function login2(object, reply) {
             })
             return userData
         } else if (type === constants.LOGIN_TYPES.loginPassword) { //Если пользователь авторизуется через нашу базу
-            const querySelectUserByLogin = `SELECT *
-                                            FROM users
+            const querySelectUserByLogin = `SELECT u."password" ,
+                                                   u."id",
+                                                   concat_ws(' ', b."secondName", b."name", b."patronomyc") as "fio",
+                                                   g."groupName"
+                                            FROM users u
+                                                     left join bios b on u."bioId" = b.id
+                                                     left join groups g on u."groupId" = g.id
                                             WHERE "login" = $1`
             const resSelectUserByLogin = await client.query(querySelectUserByLogin,
                 [
@@ -287,6 +292,8 @@ async function login2(object, reply) {
             if (resSelectUserByLogin.rows.length > 0) {
                 const userPassword = resSelectUserByLogin.rows[0].password
                 const userId = resSelectUserByLogin.rows[0].id
+                const fio = resSelectUserByLogin.rows[0].fio
+                const groupName = resSelectUserByLogin.rows[0].groupName
                 const querySelectRole = `SELECT *
                                          FROM userroles
                                          WHERE "userId" = $1`
@@ -303,7 +310,9 @@ async function login2(object, reply) {
                         message: {
                             token: token,
                             userId: +userId,
-                            roleId: +roleId
+                            roleId: +roleId,
+                            fio:fio,
+                            groupName:groupName
                         },
                         statusCode: 200
                     })
