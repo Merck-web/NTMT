@@ -350,6 +350,6 @@ async function login2(object, reply) {
 
 module.exports = {
     registration: registration,
-    login2: login2
+    login2: login2,
 }
 
