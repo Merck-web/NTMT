@@ -15,12 +15,15 @@ async function getRecordBook(object, user) {
                                               et."value",
                                               b."name",
                                               b."secondName",
-                                              b."patronomyc"
+                                              b."patronomyc",
+                                              g."groupName",
+                                              g."typeOfStudyingId"
                                        FROM recordbooks r
                                                 INNER JOIN subjects s on r."subjectId" = s."id"
                                                 INNER JOIN examtypes et on s."examType" = et.id
                                                 INNER JOIN users u on r."userId" = u.id
                                                 INNER JOIN bios b on u."bioId" = b.id
+                                                inner join groups g on u."groupId" = g.id
                                        WHERE r."userId" = $1
                                          AND r."semestrId" = $2
                                          AND r.year = $3`
