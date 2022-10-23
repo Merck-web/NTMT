@@ -52,6 +52,8 @@ async function getUserSchedule(object, user) {
             message: e.message,
             statusCode: 400
         }
+    }finally {
+        client.release()
     }
     return data
 }
