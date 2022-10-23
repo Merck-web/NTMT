@@ -19,6 +19,10 @@ const schema = {
     'ФИО Преподавателя': {
         prop: 'teacher',
         type: String
+    },
+    'Дата':{
+        prop:'date',
+        type:Date
     }
 }
 
