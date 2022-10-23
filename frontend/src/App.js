@@ -13,11 +13,11 @@ import Login from "./screens/Login";
 function App() {
   const [token, setToken] = useState({});
   useEffect(() => {
+    console.log(token)
     // setToken(" ");
     // localStorage.setItem("token", 1);
-  }, []);
+  }, [token]);
   const auth = localStorage.getItem("token");
-  console.log(auth);
   return (
     <Router>
       {auth ? (

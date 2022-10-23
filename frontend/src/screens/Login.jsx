@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import api from '../api'
 
-function Login({ setToken }) {
+function Login({ token }) {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('1');
@@ -17,7 +17,7 @@ function Login({ setToken }) {
           type: role,
         };
         const data = await api.post('/auth/login', request);
-        setToken(data);
+        token(data);
       } catch (error) {
         console.error(error);
         console.error('ERROR LOG IN');
