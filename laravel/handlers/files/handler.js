@@ -82,7 +82,7 @@ async function getUserFiles(object, user) {
     }
     const client = await pool.connect()
     try {
-        const querySelectFiles = `SELECT "fileType"::integer,substring("filePath",2,length("filePath")) as "filePath",("fileMeta"->'fileName')::text as "fileName"
+        const querySelectFiles = `SELECT "fileType"::integer,substring("filePath",2,length("filePath")) as "filePath",("fileMeta"->'fileName')::text as "fileName",id::integer
                                   FROM files
                                   WHERE "userId" = $1`
         const resSelectFiles = await client.query(querySelectFiles,
