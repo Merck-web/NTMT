@@ -300,7 +300,11 @@ async function login2(object, reply) {
                         expiresIn: '24h'
                     })
                     reply.send({
-                        message: token,
+                        message: {
+                            token: token,
+                            userId: +userId,
+                            roleId: +roleId
+                        },
                         statusCode: 200
                     })
                     console.log(`Успешный вход для пользователя ${login}`)
