@@ -26,7 +26,7 @@ async function uploadFiles(object, user) {
                     const resInsertFiles = await client.query(queryInsertFiles,
                         [
                             user.userId,
-                            object.files[i].fileType,
+                            object.fileType,
                             upload.path,
                             {fileName:object.files[i].filename.split('.')[0]}
                         ])
