@@ -8,7 +8,7 @@ import PlanScreen from "./screens/PlanScreen";
 import RecordBookScreen from "./screens/RecordBookScreen";
 import ScheduleScreen from "./screens/ScheduleScreen";
 import { useState, useEffect } from "react";
-import Login from "./screens/Login";
+import Login from "./screens/Login/Login";
 
 function App() {
   const [user, setUser] = useState({});
@@ -23,6 +23,7 @@ function App() {
 
   return (
     <Router>
+
       {token ? (
         <>
           <main className='container'>
