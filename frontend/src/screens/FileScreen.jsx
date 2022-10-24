@@ -3,6 +3,8 @@ import File from "../components/FolderFile/File";
 import file_downloader from "../scripts/file_downloader";
 import { useEffect } from "react";
 import apiFiles from "../api/files";
+import {ToastContainer, toast} from "react-toastify";
+import UploadIcon from '@mui/icons-material/Upload';
 
 function FileScreen() {
     const [file, setFile] = useState('');
@@ -29,6 +31,7 @@ function FileScreen() {
         } catch (error) {
             console.error(error);
             console.error('ERROR UPLOAD FILES');
+            toast.error('Произошла ошибка при загрузке файла. Попробуйте позже или обратитесь в техподдержку');
         }
     }
 
@@ -47,6 +50,7 @@ function FileScreen() {
         } catch(error) {
             console.error(error);
             console.error('ERROR DOWNLOAD FILE');
+            toast.error('Произошла ошибка при скачивании файла. Попробуйте позже или обратитесь в техподдержку');
         }
     }
 
@@ -57,6 +61,7 @@ function FileScreen() {
         } catch(error) {
             console.error(error);
             console.error('ERROR GET FILES');
+            toast.error('Произошла ошибка при получении файлов. Попробуйте позже или обратитесь в техподдержку');
         }
     }, []);
 
@@ -69,21 +74,36 @@ function FileScreen() {
                   style={{fontSize: '13px', textAlign: 'center', position: 'relative'}}
                   className="file-link"
               >
+                  <label htmlFor="file" style={{position: 'absolute', opacity: '0', width: '100%', height: '100%', cursor: 'pointer'}}></label>
                   <input
                       value={file}
                       type="file"
                       id="file"
-                      style={{position: 'absolute', opacity: '0', width: '100%', height: '100%'}}
+                      style={{position: 'absolute', display: 'none', width: '100%', height: '100%'}}
                       onChange={(e) => uploadFiles(e.target.files)}
                   />
-                  <img src='./images/file.png' alt='1'/>
-                  <p>Загрузить файлы</p>
+                  <UploadIcon sx={{fontSize: '80px'}} color="primary"/>
+                  <p style={{textAlign: 'center'}}>Загрузить файлы</p>
               </div>
               {files.map((file, index) => (
                   <File file={file} key={index} onClick={() => downloadFile(index)}/>
               ))}
           </div>
       </div>
+
+        <ToastContainer
+            position="bottom-left"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+            style={{width: '500px'}}
+        />
     </div>
   );
 }

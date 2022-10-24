@@ -11,6 +11,16 @@ const authInterceptor = config => {
 
 $api.interceptors.request.use(authInterceptor);
 
+$api.interceptors.response.use(response => {
+    return response;
+}, error => {
+    if (error.response.statusCode === 403) {
+        localStorage.removeItem('token');
+        window.location = '/';
+    }
+    return Promise.reject(error);
+})
+
 export {
     $api,
 }

@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useMemo} from "react";
 import "./SheduleTable.css";
 import apiSchedule from "../../api/schedule";
+import {ToastContainer, toast} from "react-toastify";
 
 function SheduleTable() {
   const [lessons, setLessons] = useState([]);
@@ -33,6 +34,7 @@ function SheduleTable() {
       } catch (error) {
         console.error(error);
         console.error('ERROR GET LESSONS');
+        toast.error('Произошла ошибка при получении расписания. Попробуйте позже или обратитесь в техподдержку');
       }
   }, []);
 
@@ -69,6 +71,20 @@ function SheduleTable() {
           </tr>
         </tbody>
       </table>
+
+      <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          style={{width: '500px'}}
+      />
     </div>
   );
 }

@@ -47,10 +47,12 @@ function App() {
         </>
       ) : (
         <main className='container'>
-          <Login
-              setToken={setToken}
-              setUser={setUser}
-          />
+          <Route path="/">
+            <Login
+                setToken={setToken}
+                setUser={setUser}
+            />
+          </Route>
         </main>
       )}
     </Router>
