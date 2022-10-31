@@ -9,7 +9,7 @@ exports.up = async pgm => {
     if (group.rowCount === 0 || group.rows.length === 0) {
         throw 'Ошибка при создании группы'
     }
-
+    //password = root
     const user = await pgm.db.query(`insert into users ("typesId", "login", "password", "groupId")
                                      values (2, 'user', '$2a$10$yqkkq19EglFc68MuNEHifuFGYfUnc9oaSlgfvp/SrnLu4dR4uvdHG',
                                              ${group.rows[0].id})
