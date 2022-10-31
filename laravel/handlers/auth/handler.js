@@ -91,62 +91,67 @@ async function registration(object) {
             ])
         if (resSelectLogin.rows.length === 0) {
             await client.query('BEGIN')
-            const queryInsertBios = `INSERT INTO bios ("name", "secondName", "patronomyc", "flura", "grant")
-                                     VALUES ($1, $2, $3, $4, $5)
-                                     RETURNING *`
-            const resInsertBios = await client.query(queryInsertBios,
-                [
-                    object.name,
-                    object.secondName,
-                    object.patronomyc,
-                    object.flura,
-                    object.grant
-                ])
-            if (resInsertBios.rows.length > 0) {
+
                 let hashPassword
                 if (object.type != 1) {
                     hashPassword = bcrypt.hashSync(object.password, 5)
                 } else {
                     hashPassword = object.password
                 }
-                const queryInsertUsers = `INSERT INTO users ("bioId", "typesId", "login", "password", "groupId")
-                                          VALUES ($1, $2, $3, $4, $5)
+                const queryInsertUsers = `INSERT INTO users ("typesId", "login", "password", "groupId")
+                                          VALUES ($1, $2, $3, $4)
                                           RETURNING *`
                 const resInsertUsers = await client.query(queryInsertUsers,
                     [
-                        resInsertBios.rows[0].id,
                         object.type,
                         object.login,
                         hashPassword,
                         object.groupId
                     ])
-                await client.query(`UPDATE bios
-                                    SET "userId" = $1
-                                    WHERE id = $2`, [resInsertUsers.rows[0].id, resInsertBios.rows[0].id])
                 if (resInsertUsers.rows.length > 0) {
-                    const queryInsertUserRole = `INSERT INTO userroles ("userId", "roleId")
+                    const queryInsertBios = `INSERT INTO bios ("name", "secondName", "patronomyc", "flura", "grant","userId")
+                                             VALUES ($1, $2, $3, $4, $5)`
+                    const resInsertBios = await client.query(queryInsertBios,
+                        [
+                            object.name,
+                            object.secondName,
+                            object.patronomyc,
+                            object.flura,
+                            object.grant,
+                            resInsertUsers.rows[0].id
+                        ])
+                    if(resInsertUsers.rowCount > 0){
+                        const queryInsertUserRole = `INSERT INTO userroles ("userId", "roleId")
                                                  VALUES ($1, $2)
                                                  RETURNING *`
-                    const resInsertUserRole = await client.query(queryInsertUserRole,
-                        [
-                            Number(resInsertUsers.rows[0].id),
-                            object.role
-                        ])
-                    if (resInsertUserRole.rows.length > 0) {
-                        await client.query('COMMIT')
-                        data = {
-                            message: 'success',
-                            statusCode: 200
+                        const resInsertUserRole = await client.query(queryInsertUserRole,
+                            [
+                                Number(resInsertUsers.rows[0].id),
+                                object.role
+                            ])
+                        if (resInsertUserRole.rows.length > 0) {
+                            await client.query('COMMIT')
+                            data = {
+                                message: 'success',
+                                statusCode: 200
+                            }
+                        } else {
+                            await client.query('ROLLBACK')
+                            data = {
+                                message: 'Ошибка при создании роли пользователя',
+                                statusCode: 400
+                            }
+                            console.log('ERROR:Ошибка при роли пользователя')
                         }
-                    } else {
-                        await client.query('ROLLBACK')
+
+                    }else{
+                        console.log(`Ошибка при создании био пользователя`)
+
                         data = {
-                            message: 'Ошибка при создании роли пользователя',
+                            message:'create user bio error',
                             statusCode: 400
                         }
-                        console.log('ERROR:Ошибка при роли пользователя')
                     }
-
                 } else {
                     await client.query('ROLLBACK')
                     data = {
@@ -155,14 +160,6 @@ async function registration(object) {
                     }
                     console.log('ERROR:Ошибка при создании пользователя')
                 }
-            } else {
-                await client.query('ROLLBACK')
-                console.log('ERROR:Ошибка при создании bio')
-                data = {
-                    message: 'Ошибка при создании bio',
-                    statusCode: 400
-                }
-            }
         } else {
             data = {
                 message: 'Пользователь с таким логином уже существует',
@@ -282,7 +279,7 @@ async function login2(object, reply) {
                                                    concat_ws(' ', b."secondName", b."name", b."patronomyc") as "fio",
                                                    g."groupName"
                                             FROM users u
-                                                     left join bios b on u."bioId" = b.id
+                                                     left join bios b on b."userId" = u.id
                                                      left join groups g on u."groupId" = g.id
                                             WHERE "login" = $1`
             const resSelectUserByLogin = await client.query(querySelectUserByLogin,

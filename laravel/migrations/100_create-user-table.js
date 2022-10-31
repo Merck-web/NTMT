@@ -7,9 +7,6 @@ exports.up = pgm => {
             type: 'bigserial',
             primaryKey: true
         },
-        bioId: {
-            type: 'bigint'
-        },
         typesId: {
             type: 'bigint'
         },
