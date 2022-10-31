@@ -4,14 +4,9 @@ import CardNews from "../components/CardNews/CardNews";
 
 function PersonalArea() {
   return (
-    <div className='personal-area'>
-      <div className='content'>
-        <div className='row title'>Личный кабинет</div>
+      <div className='personal-area'>
+          <CardNews/>
       </div>
-      <div>
-        <CardNews />
-      </div>
-    </div>
   );
 }
 

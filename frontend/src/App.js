@@ -8,22 +8,30 @@ import PlanScreen from "./screens/PlanScreen";
 import RecordBookScreen from "./screens/RecordBookScreen";
 import ScheduleScreen from "./screens/ScheduleScreen";
 import { useState, useEffect } from "react";
-import Login from "./screens/Login";
+import Login from "./screens/Login/Login";
 
 function App() {
-  const [token, setToken] = useState();
+  const [user, setUser] = useState({});
+  const [token, setToken] = useState('');
+
   useEffect(() => {
-    // setToken(" ");
-    localStorage.setItem("token", 1);
-  }, []);
-  const auth = localStorage.getItem("token");
-  console.log(auth);
+    setToken(localStorage.getItem('token') || '');
+    if (token) {
+      localStorage.setItem('token', token || '');
+    }
+  }, [token]);
+
   return (
     <Router>
-      {auth !== "" ? (
+
+      {token ? (
         <>
           <main className='container'>
-            <Headers />
+            <Headers
+                setToken={setToken}
+                user={user}
+                setUser={setUser}
+            />
             <div className='content'>
               <PersonalArea />
               <div className='routers'>
@@ -39,7 +47,12 @@ function App() {
         </>
       ) : (
         <main className='container'>
-          <Login />
+          <Route path="/">
+            <Login
+                setToken={setToken}
+                setUser={setUser}
+            />
+          </Route>
         </main>
       )}
     </Router>

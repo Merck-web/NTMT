@@ -1,7 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import zach from "../json/zachetka";
+import apiRecordBook from "../api/recordBook";
 
 function RecordBookScreen() {
+  const [records, setRecords] = useState([]);
+
+  useEffect(async () => {
+    try {
+      const request = {
+
+      };
+      const response = await apiRecordBook.get(request);
+    } catch(error) {
+      console.error(error);
+      console.error('ERROR GET RECORDS');
+    }
+  }, [records])
   return (
     <div>
       <div className='title'>Зачетная книжка</div>
@@ -13,9 +27,6 @@ function RecordBookScreen() {
       <div className='detail-record-book'>
         <div className='detail-napr'>
           <span>Направление обучения:</span> Компьютерные системы и комплексы
-        </div>
-        <div className='detail-qval'>
-          <span>Квалификация:</span> Техник
         </div>
         <div className='detail-form'>
           <span>Форма обучения:</span> Очная

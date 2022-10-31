@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
 
-function File({ file }) {
+function File({ file, onClick }) {
   return (
-    <Link className="file-link">
+    <div className="file-link" onClick={onClick}>
       <img src='./images/file.png' alt='1' />
-      <p>{file.nameFile}</p>
-    </Link>
+      <p>{file.fileName}</p>
+    </div>
   );
 }
 
